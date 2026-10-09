@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carnet Digital de Vacunación - <?= paciente.Nombre ?></title>
+  <title>Carnet Digital de Vacunación - {Nombre}</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f1f5f9; padding: 16px; display: flex; justify-content: center; }
@@ -37,26 +37,26 @@
   <div class="card">
     <div class="header">
       <h1>Carnet Digital de Vacunación</h1>
-      <h2><?= paciente.Nombre ?></h2>
+      <h2>{Nombre}</h2>
     </div>
 
     <div class="pet-info">
       <div class="info-grid">
         <div class="info-item">
           <div class="label">Especie</div>
-          <div class="value"><?= paciente.Especie ?></div>
+          <div class="value">{Especie}</div>
         </div>
         <div class="info-item">
           <div class="label">Raza</div>
-          <div class="value"><?= paciente.Raza ?></div>
+          <div class="value">{Raza}</div>
         </div>
         <div class="info-item">
           <div class="label">Sexo</div>
-          <div class="value"><?= paciente.Sexo ?></div>
+          <div class="value">{Sexo}</div>
         </div>
         <div class="info-item">
           <div class="label">Propietario</div>
-          <div class="value"><?= paciente.Propietario ?></div>
+          <div class="value">{Propietario}</div>
         </div>
       </div>
     </div>
@@ -64,21 +64,7 @@
     <div class="section-title">Historial de Vacunación y Tratamientos</div>
 
     <div class="records-list">
-      <? if (historial.length === 0) { ?>
-        <p style="color: #94a3b8; font-size: 0.85rem; text-align: center; padding: 20px;">No hay registros cargados aún.</p>
-      <? } else { ?>
-        <? for (var i = 0; i < historial.length; i++) { ?>
-          <div class="record-card">
-            <div class="record-header">
-              <span class="record-title"><?= historial[i].Producto ?></span>
-              <span class="record-date"><?= historial[i].Fecha ?></span>
-            </div>
-            <? if (historial[i].ProximaAplicacion) { ?>
-              <div class="record-next">Próximo Refuerzo: <?= historial[i].ProximaAplicacion ?></div>
-            <? } ?>
-          </div>
-        <? } ?>
-      <? } ?>
+      {HistorialHtml}
     </div>
 
     <div class="footer">
