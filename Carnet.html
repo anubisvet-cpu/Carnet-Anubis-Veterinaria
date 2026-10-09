@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnet Digital de Vacunación - <?= paciente.Nombre ?></title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f1f5f9; padding: 16px; display: flex; justify-content: center; }
+    .card { background: #ffffff; width: 100%; max-width: 420px; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    
+    .header { background: linear-gradient(135deg, #00acc1, #00838f); color: white; padding: 20px; text-align: center; }
+    .header h1 { font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; }
+    .header h2 { font-size: 1.8rem; font-weight: 800; margin-top: 4px; }
+    
+    .pet-info { padding: 20px; background: #ffffff; border-bottom: 1px solid #f1f5f9; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+    .info-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
+    .info-item .label { font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; }
+    .info-item .value { font-size: 0.95rem; color: #1e293b; font-weight: 700; margin-top: 2px; }
+    
+    .section-title { padding: 16px 20px 8px; font-size: 0.9rem; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    .records-list { padding: 0 20px 20px; }
+    .record-card { background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid #00acc1; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+    .record-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .record-title { font-weight: 700; color: #0f172a; font-size: 0.95rem; }
+    .record-date { font-size: 0.8rem; color: #64748b; font-weight: 600; }
+    .record-next { font-size: 0.8rem; color: #d97706; font-weight: 700; margin-top: 4px; }
+    
+    .footer { padding: 16px; background: #f8fafc; text-align: center; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #64748b; }
+    .footer strong { color: #00acc1; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="header">
+      <h1>Carnet Digital de Vacunación</h1>
+      <h2><?= paciente.Nombre ?></h2>
+    </div>
+
+    <div class="pet-info">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">Especie</div>
+          <div class="value"><?= paciente.Especie ?></div>
+        </div>
+        <div class="info-item">
+          <div class="label">Raza</div>
+          <div class="value"><?= paciente.Raza ?></div>
+        </div>
+        <div class="info-item">
+          <div class="label">Sexo</div>
+          <div class="value"><?= paciente.Sexo ?></div>
+        </div>
+        <div class="info-item">
+          <div class="label">Propietario</div>
+          <div class="value"><?= paciente.Propietario ?></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Historial de Vacunación y Tratamientos</div>
+
+    <div class="records-list">
+      <? if (historial.length === 0) { ?>
+        <p style="color: #94a3b8; font-size: 0.85rem; text-align: center; padding: 20px;">No hay registros cargados aún.</p>
+      <? } else { ?>
+        <? for (var i = 0; i < historial.length; i++) { ?>
+          <div class="record-card">
+            <div class="record-header">
+              <span class="record-title"><?= historial[i].Producto ?></span>
+              <span class="record-date"><?= historial[i].Fecha ?></span>
+            </div>
+            <? if (historial[i].ProximaAplicacion) { ?>
+              <div class="record-next">Próximo Refuerzo: <?= historial[i].ProximaAplicacion ?></div>
+            <? } ?>
+          </div>
+        <? } ?>
+      <? } ?>
+    </div>
+
+    <div class="footer">
+      Clínica Veterinaria <strong>AnubisVet</strong><br>
+      ¡Atención y cuidado profesional para tu mascota!
+    </div>
+  </div>
+
+</body>
+</html>
